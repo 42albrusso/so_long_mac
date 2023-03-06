@@ -6,13 +6,13 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:23:17 by albrusso          #+#    #+#             */
-/*   Updated: 2023/03/03 15:51:31 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:02:55 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_vector	ft_find_coordinates(t_map *map)
+t_vector	ft_find_coordinates(t_map *map, char c)
 {
 	int	i;
 	int	j;
@@ -24,11 +24,11 @@ t_vector	ft_find_coordinates(t_map *map)
 		j = 0;
 		while(j < map->width)
 		{
-			if (map->map[i][j] == 'P')
+			if (map->map[i][j] == c)
 				break ;
 			j++;
 		}
-		if (map->map[i][j] == 'P')
+		if (map->map[i][j] == c)
 			break ;
 		i++;
 	}
@@ -42,7 +42,8 @@ char	**ft_refresh_map(int keycode, t_program *game)
 	t_vector	coordinates;
 	char		nbr;
 
-	coordinates = ft_find_coordinates(&game->map);
+	coordinates = ft_find_coordinates(&game->map, 'P');
+	ft_enemy_direction(game);
 	if (keycode == 97 || keycode == 65361 || keycode == 0 || keycode == 123)
 	{
 		if (game->map.map[coordinates.y][coordinates.x - 1] != '1' && game->map.map[coordinates.y][coordinates.x - 1] != 'E' && game->map.map[coordinates.y][coordinates.x - 1] != 'N')

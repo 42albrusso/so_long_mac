@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:36:22 by albrusso          #+#    #+#             */
-/*   Updated: 2023/03/03 15:58:42 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:02:36 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,14 @@ char	**ft_refresh_map(int keycode, t_program *game);
 
 int	ft_check_map(t_map *map);
 
-t_vector	ft_find_coordinates(t_map *map);
+t_vector	ft_find_coordinates(t_map *map, char c);
 
 int	ft_check_path_map(t_program *game);
 
 char	*ft_strdup(const char *str);
+
+char	*ft_itoa(int n);
+
+void	ft_enemy_direction(t_program *game);
 
 #endif

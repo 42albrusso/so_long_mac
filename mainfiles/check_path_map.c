@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:38:46 by albrusso          #+#    #+#             */
-/*   Updated: 2023/03/03 15:12:36 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:03:34 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_check_path_map(t_program *game)
 	int	j;
 
 	i = 0;
-	character_position = ft_find_coordinates(&game->map);
+	character_position = ft_find_coordinates(&game->map, 'P');
 	copy_map = ft_copy_map(game);
 	ft_flood_fill(copy_map, '1', character_position.x, character_position.y);
 	while (i < game->map.height)

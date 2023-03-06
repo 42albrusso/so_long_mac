@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:14:17 by albrusso          #+#    #+#             */
-/*   Updated: 2023/03/03 14:25:20 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:48:15 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	key_hook(int keycode, void *g)
 	t_program	*game;
 	t_vector	old;
 	static int		old_keycode;
+	static int		moves_nbr;
+	char		*print_moves;
 
 	game = (t_program *)g;
 	old.x = game->sprite_position.x;
@@ -31,6 +33,7 @@ int	key_hook(int keycode, void *g)
 			game->sprite_position.x -= 60;
 		old_keycode = 1;
 		ft_refresh_img(game, "image/character1.xpm");
+		moves_nbr++;
 	}
 	else if (keycode == 100 || keycode == 65363 || keycode == 2 || keycode == 124)
 	{
@@ -38,7 +41,7 @@ int	key_hook(int keycode, void *g)
 			game->sprite_position.x += 60;
 		old_keycode = 0;
 		ft_refresh_img(game, "image/character.xpm");
-
+		moves_nbr++;
 	}
 	else if (keycode == 115 || keycode == 65364 || keycode == 1 || keycode == 125)
 	{
@@ -48,7 +51,7 @@ int	key_hook(int keycode, void *g)
 			ft_refresh_img(game, "image/character.xpm");
 		else if (old_keycode == 1)
 			ft_refresh_img(game, "image/character1.xpm");
-		
+		moves_nbr++;
 	}
 	else if (keycode == 119 || keycode == 65362 || keycode == 13 || keycode == 126)
 	{
@@ -58,8 +61,11 @@ int	key_hook(int keycode, void *g)
 			ft_refresh_img(game, "image/character.xpm");
 		else if (old_keycode == 1)
 			ft_refresh_img(game, "image/character1.xpm");
+		moves_nbr++;
 	}
+	print_moves = ft_itoa(moves_nbr);
+	mlx_clear_window(game->mlx, game->win.reference);
 	game->map.map = ft_refresh_map(keycode, game);
-	printf("keycode: %d\n", keycode);
+	mlx_string_put(game->mlx, game->win.reference, (game->map.width * 60) - 20, (game->map.height * 60) + 10, 0xffffff, print_moves);
 	return (0);
 }
